@@ -1,0 +1,212 @@
+.shadow {
+    -webkit-box-shadow: 4px 4px 4px rgba(65, 65, 65, 0.35);
+    -moz-box-shadow:    4px 4px 4px rgba(65, 65, 65, 0.35);
+    box-shadow:         4px 4px 4px rgba(65, 65, 65, 0.35);
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+  }
+
+
+.tecla {
+    float: left;
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    text-align: center;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.tecla0 {
+    width: 62px;
+}
+
+.clear {
+    clear: both;
+}
+
+#display {
+    margin-bottom: 1rem;
+}
+
+
+/* \/ Barra de navegação */
+.nav {
+    width: 100%;
+    background-color: #2ead08;
+    margin-bottom: 2rem;
+    position: fixed;
+    top: 0;
+
+}
+
+.logo {
+    width: 90px;
+    height: 56px;
+    float: left;
+    display: block;
+    padding: 13px 20px;
+    transition-duration: 0.4s;
+}
+
+.logo:hover{background-color: #00be19;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+  
+li {
+    float: left;
+    font-size: 19px;
+}
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+  
+li a:hover {
+    background-color: #00be19;
+}
+/* /\ Barra de navegação */
+
+
+/* \/ DropDown */
+.dropbtn:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+position: absolute;
+background-color: #2ead08;
+min-width: 160px;
+z-index: 2;
+padding: 5px 5px;
+display: none;
+}
+
+#feedback {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    background: purple;
+    color: white;
+    height: 1rem;
+    margin: 1rem;
+    text-align: center;
+
+}
+/* /\ DropDown */
+
+
+/* \/ Formulário */
+.card {
+    margin: auto;
+    width: 710px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3rem 1rem;
+    margin-bottom: 2rem;
+    margin-top: 105px;
+}
+input[type=text], select, textarea {
+    width: 130px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    max-height: 15px;
+    border-radius: 4px;
+    resize: vertical;
+}
+input[type=date] {
+    width: 130px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 15px;
+    resize: none;
+}
+/* /\ Formulário */
+
+
+/* \/ Tabela */
+.table {
+    margin: 1rem;
+}
+  
+th, td {
+    padding: 4px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+  
+tr:hover {background-color:#f5f5f5;}
+/* /\ Tabela */
+
+
+/* \/ Botão */
+.btn {
+    border-radius: 6px;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn-info {background-color: #08a3e0;}
+.btn-info:hover {background-color: #00b7ff;}
+.btn-success {background-color: #2ead08;}
+.btn-success:hover {background-color: #00be19;}
+.btn-danger {background-color: #e22309;}
+.btn-danger:hover {background-color: #ff1e00;}
+/* /\ Botão */
+
+
+/* \/ Resposivo: */
+ul.menu-resposive {
+    display: block;
+}
+
+.menuBtn {
+    display: none;
+}
+
+@media (max-width: 785px) {
+    ul.menu-resposive {
+        display: block;
+        text-align: right;
+        height: 82px;
+    }
+
+    .menu-resposive li {
+        display: block;
+        float: none;
+    }
+
+    .menuBtn {
+        display: block;
+    }
+
+}
+/* /\ Resposivo: */
+
