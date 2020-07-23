@@ -47,7 +47,7 @@ class CalcController{
     }
 
     calc() {
-        var last = ''
+        let last = ''
         this._lastOperator = this.getLastItem()
         if (this._operation.length < 3) {
             let firstItem = this._operation[0]
@@ -60,7 +60,11 @@ class CalcController{
             this._lastNumber = this.getLastItem(false)
         }
         let result = this.getResult()
-        this._operation = [result]
+        this._operation = [result];
+        if (last) {
+            this._operation = [result];
+            if(last) this._operation.push(last);
+        }
         this.setLastNumberToDisplay()
     }
 
