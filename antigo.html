@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/index.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Aula 1</title>
+    </head>
+    <body>
+        <header>
+            <div class="nav">
+                <span>
+                    <a href=#>
+                        <img class="logo" src="https://www.serasa.com.br/lno/static-webfiles/logo/serasa-white.svg">
+                    </a>
+                </span>
+                <ul class="menu-resposive">
+                    <li class="dropbtn menuBtn">
+                        <a href=#><i class="fa fa-bars"></i></a>
+                        <ul class="dropdown-content">
+                            <a href=#>Conheça Os Produtos <i class="fa fa-sort-desc"></i></a>
+                            <a href="#">Conta</a>
+                            <a href="#">Ajuda</a>
+                        </ul>
+                    </li>
+                    <li class="dropbtn">
+                        <a href=#>Conheça Os Produtos <i class="fa fa-sort-desc"></i></a>
+                            <ul class="dropdown-content">
+                                <a href="#">Produto 1</a>
+                                <a href="#">Produto 2</a>
+                                <a href="#">Produto 3</a>
+                            </ul>
+                    </li>
+                    <li><a href=#>Conta</a></li>
+                    <li><a href=#>Ajuda</a></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="flex-container card shadow">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Tarefas</th>
+                            <th>Data de Inicio</th>
+                            <th>Data de Entrega</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex-container">
+                <form>
+                    <input type="text" name="task" id="task" placeholder="Tarefa">
+                    <input type="date" name="beginDate" id="beginDate">
+                    <input type="date" name="finalDate" id="finalDate">
+                    <button class="btn btn-success" type="button" id="btnAdd"><i class="fa fa-plus"></i> Tarefa</button>
+                </form>
+            </div>
+            <div class="">
+                <input type="text" id="display" value=""><div class="clear">
+                    <div class="tecla" id="btn-1">1</div>
+                    <div class="tecla" id="btn-2">2</div>
+                    <div class="tecla" id="btn-3">3</div>
+                    <div class="tecla" id="btn-+">+</div><div class="clear"></div>
+                    <div class="tecla" id="btn-4">4</div>
+                    <div class="tecla" id="btn-5">5</div>
+                    <div class="tecla" id="btn-6">6</div>
+                    <div class="tecla" id="btn--">-</div><div class="clear"></div>
+                    <div class="tecla" id="btn-7">7</div>
+                    <div class="tecla" id="btn-8">8</div>
+                    <div class="tecla" id="btn-9">9</div>
+                    <div class="tecla" id="btn-*">*</div><div class="clear"></div>
+                    <div class="tecla tecla0" id="btn-0">0</div>
+                    <div class="tecla" id="btn-/">/</div>
+                    <div class="tecla" id="btn-=">=</div>
+            </div>
+        <!--  
+            <td><a class="btn btn-info" href=""><i class="fa fa-pencil"></i></a></td>
+            <td><a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a></td>
+        -->
+        <script src="scripts/controller/CalcController.js"></script>
+        <script src="scripts/controller/TableController.js"></script>
+        <script src="scripts/calculator.js"></script>
+        <script src="scripts/table.js"></script>
+    </body>
+</html>
