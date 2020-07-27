@@ -5,38 +5,38 @@ export default class TableController {
         this.buttonAdd()
     }
 
+    /* 
+    * Descrição: Método usado para retornar um elemento em outros métodos!
+    */
     setTBody(){
-        /* 
-        * Descrição: Método usado para retornar um elemento em outros métodos!
-        */
         const table = document.getElementById('tbody')
         return table
     }
 
+    /* 
+    * Descrição: Este método conta a linha e depois cria uma Row, posteriomente é usada para setar as Células em this.addTask()
+    */
     countLinies() {
-        /* 
-        * Descrição: Este método conta a linha e depois cria uma Row, posteriomente é usada para setar as Células em this.addTask()
-        */
         const table = this.setTBody()
         const amountLines = table.rows.length
         const line = table.insertRow(amountLines);
         return line
     }
 
+    /* 
+    * Descrição: Método contador de linhas para gerar o ID posteriomente
+    */
     rows() {
-        /* 
-        * Descrição: Método contador de linhas para gerar o ID posteriomente
-        */
         const table = this.setTBody()
         const oRows = table.getElementsByTagName('tr')
         const iRowCount = oRows.length
         return iRowCount
     }
 
+    /* 
+    * Descrição: Método que escuta e pega os dados dos inputs do formulário
+    */
     buttonAdd() {
-        /* 
-        * Descrição: Método que escuta e pega os dados dos inputs do formulário
-        */
         var buttonAdd = document.getElementById("btnAdd")
         buttonAdd.addEventListener('click', () => {
 
@@ -49,10 +49,10 @@ export default class TableController {
         })
     }
 
+    /* 
+    * Descrição: Envia os dados para o Model Table, depois cria as celulas da coluna e por fim seta os dados da Table.x
+    */
     addTask(task, beginDate, finalDate, indexRow, line) {
-        /* 
-        * Descrição: Envia os dados para o Model Table, depois cria as celulas da coluna e por fim seta os dados da Table.x
-        */
         const table = new Table(indexRow, task, beginDate, finalDate)
 
         const colId = line.insertCell(0)
@@ -69,10 +69,10 @@ export default class TableController {
         colBtn.append(table.btn)
     }
 
+    /* 
+    * Descrição: Inicia o TableController com o 'this' no index.js
+    */
     init() {
-        /* 
-        * Descrição: Inicia o TableController com o 'this' no index.js
-        */
         return this
     }
 }

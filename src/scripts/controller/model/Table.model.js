@@ -7,10 +7,10 @@ export default class Table {
         this.btn = this.createBtn()
     }
 
+    /* 
+    * Descrição: Este método é usado para criar um botão de delete em cada linha individualmente
+    */
     createBtn() {
-        /* 
-        * Descrição: Este método é usado para criar um botão de delete em cada linha individualmente
-        */
         const btn = document.createElement('button')
         btn.classList.add("btn")
         btn.classList.add("btn-danger")
@@ -21,14 +21,13 @@ export default class Table {
             const element = (e.target.parentNode).parentNode
             element.remove()
         })
-
         return btn
     }
 
+    /* 
+    * Descrição: Inicia o TableController com o 'this' no index.js
+    */
     init() {
-        /* 
-        * Descrição: Inicia o TableController com o 'this' no index.js
-        */
         return this
     }
 }
