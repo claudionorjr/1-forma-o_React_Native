@@ -1,4 +1,4 @@
-class CalcController{
+export default class CalcController{
     constructor() {
         this._lastOperator = ''
         this._lastNumber = ''
@@ -166,5 +166,9 @@ class CalcController{
             return false
         }
         this._displayCalcEl.value = value
+    }
+
+    init(){
+        return this
     }
 }

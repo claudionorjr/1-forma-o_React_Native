@@ -1,1 +1,0 @@
-window.table = new TableController()
