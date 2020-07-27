@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+/*
+    #DB0D00 danger --- #00DB57 success
+    #AC00DB roxo --- #89DB00 verde
+    ##bb01ee roxo claro 
+    
+*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.nav ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #AC00DB;
+}
+
+.nav ul.topnav li {float: left;}
+
+.nav ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+
+.nav ul.topnav li a:hover:not(.active) {background-color: #bb01ee;}
+.nav ul.topnav li a.active {
+    color: black;
+    background-color: #89DB00;}
+.nav ul.topnav li.right {float: right;}
+
+#backTop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    background: #89DB00;
+    color: black;
+    height: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    justify-content: center;
+    grid-gap: 10px;
+    padding-top: 3rem;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+}
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+  
+.card-footer {
+    display: grid;
+    justify-content: center;
+    padding: 1rem 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #89DB00;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .nav ul.topnav li.right, 
+    .nav ul.topnav li {float: none; border-top: 1px solid rgb(46, 46, 46);}
+    #backTop {padding: 0.35rem;}
+}
+
+@media (max-width: 350px){
+    body {
+        min-width: 350px;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 350px){
+    table {
+        min-width: 350px;
+    }
+}
