@@ -1,8 +1,8 @@
 class TableController {
     constructor() {
-        this.buttonEvent()
+        this.buttonAdd()
     }
-    
+
     setTBody(){
         const table = document.getElementById('tbody')
 
@@ -25,9 +25,14 @@ class TableController {
         return iRowCount
     }
 
-    buttonEvent() {
-        var button = document.getElementById("btnAdd")
-        button.addEventListener('click', () => {
+    removeLine(value) {
+        const line = document.getElementById('tbody')
+        line.removeChild(value)
+    }
+
+    buttonAdd() {
+        var buttonAdd = document.getElementById("btnAdd")
+        buttonAdd.addEventListener('click', () => {
 
             const linies = this.table()
             const indexRow = this.rows()
@@ -44,10 +49,22 @@ class TableController {
         const colTask = line.insertCell(1)
         const colBeginDate = line.insertCell(2)
         const colFinalDate = line.insertCell(3)
+        const btn = line.insertCell(4)
+        
     
-        colId.innerHTML= indexRow
+        colId.innerHTML = indexRow
         colTask.innerHTML = task
         colBeginDate.innerHTML = beginDate
         colFinalDate.innerHTML = finalDate
+        btn.innerHTML = document.createElement('button')
+        btn.classList.add("btn")
+        btn.classList.add("btn-danger")
+        btn.type = "button"
+        btn.id = "btnRemove"
+        btn.innerHTML = "<i class='fa fa-trash'></i> Tarefa"
+        btn.addEventListener('click', (e) => {
+            const element = e.target.parentNode
+            this.removeLine(element)
+        })
     }
 }

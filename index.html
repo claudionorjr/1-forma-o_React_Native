@@ -15,7 +15,6 @@
         <div class="nav">
             <ul class="topnav">
                 <li><a class="active" href=#><i class="fa fa-home"></i></a></li>
-                <li><a href="#Calculadora">Calculadora</a></li>
                 <li><a href="#Tarefas">Tarefas</a></li>
                 <li class="right"><a target="blank" href="https://github.com/claudionorjr">GitHub</a></li>
             </ul>
@@ -23,34 +22,30 @@
     </header>
     <span id="backTop"><i class="fa fa-home"></i></span>
     <main class="grid-container">
-        <div class="card">
-            <div class="grid-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Index</th>
-                            <th>Tarefas</th>
-                            <th>Data de Inicio</th>
-                            <th>Data de Entrega</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-footer grid-container">
-                <div>
-                    <button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i> Tarefa</button>
-                </div>
-                <form>
-                    <input type="text" name="task" id="task" placeholder="Tarefa">
-                    <input type="date" name="beginDate" id="beginDate">
-                    <input type="date" name="finalDate" id="finalDate">
-                    <button class="btn btn-success" type="button" id="btnAdd"><i class="fa fa-plus"></i> Tarefa</button>
-                </form>
-            </div>
+        <div class="card overflow">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Tarefas</th>
+                        <th>Data de Inicio</th>
+                        <th>Data de Entrega</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" name="task" id="task" placeholder="Tarefa"></td>
+                        <td><input type="date" name="beginDate" id="beginDate"></td>
+                        <td><input type="date" name="finalDate" id="finalDate"></td>
+                        <td><button class="btn btn-success" type="button" id="btnAdd"><i class="fa fa-plus"></i> Tarefa</button></td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
-
     </main>
     <script src="scripts/controller/CalcController.js"></script>
     <script src="scripts/controller/TableController.js"></script>
