@@ -1,4 +1,4 @@
-import Table from './model/Table.model.js'
+import Table from './model/Table.js'
 
 /**
  * class TableController
