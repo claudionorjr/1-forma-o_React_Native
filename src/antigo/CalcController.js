@@ -85,7 +85,6 @@ export default class CalcController{
         }
     }
 
-
     /**
      * Descrição: Método para calcular.
      */
