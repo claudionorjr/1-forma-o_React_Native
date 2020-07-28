@@ -1,21 +1,34 @@
 import Table from './model/Table.model.js'
 
+/**
+ * class TableController
+ * 
+ * Descrição: Classe para controlar informações da Table.model.js!
+ * 
+ * @version 1.0.0
+ * @author Claudionor Junior <claudionor.junior1994@gmail.com>
+ */
 export default class TableController {
     constructor() {
         this.buttonAdd()
     }
 
-    /* 
-    * Descrição: Método usado para retornar um elemento em outros métodos!
-    */
+    /**
+     * Descrição: Método usado para retornar um elemento em outros métodos!
+     * 
+     * @returns {HTMLElement} table
+     */
     setTBody(){
         const table = document.getElementById('tbody')
         return table
     }
 
-    /* 
-    * Descrição: Este método conta a linha e depois cria uma Row, posteriomente é usada para setar as Células em this.addTask()
-    */
+    /**
+     * Descrição: Este método conta a linha e depois cria uma Row,
+     *            posteriomente é usada para setar as Células em this.addTask()
+     * 
+     * @returns {Int} line
+     */
     countLinies() {
         const table = this.setTBody()
         const amountLines = table.rows.length
@@ -23,9 +36,11 @@ export default class TableController {
         return line
     }
 
-    /* 
-    * Descrição: Método contador de linhas para gerar o ID posteriomente
-    */
+    /**
+     * Descrição: Método contador de linhas para gerar o ID posteriomente
+     * 
+     * @returns {Int} iRowCount
+     */
     rows() {
         const table = this.setTBody()
         const oRows = table.getElementsByTagName('tr')
@@ -33,7 +48,7 @@ export default class TableController {
         return iRowCount
     }
 
-    /* 
+    /**
     * Descrição: Método que escuta e pega os dados dos inputs do formulário
     */
     buttonAdd() {
@@ -49,9 +64,16 @@ export default class TableController {
         })
     }
 
-    /* 
-    * Descrição: Envia os dados para o Model Table, depois cria as celulas da coluna e por fim seta os dados da Table.x
-    */
+    /**
+     * Descrição: Envia os dados para o Model Table, depois cria as celulas
+     *            da coluna e por fim seta os dados da Table.x
+     * 
+     * @param {String} task 
+     * @param {String} beginDate 
+     * @param {String} finalDate 
+     * @param {Int} indexRow 
+     * @param {Int} line 
+     */
     addTask(task, beginDate, finalDate, indexRow, line) {
         const table = new Table(indexRow, task, beginDate, finalDate)
 
@@ -69,9 +91,11 @@ export default class TableController {
         colBtn.append(table.btn)
     }
 
-    /* 
-    * Descrição: Inicia o TableController com o 'this' no index.js
-    */
+    /**
+     * Descrição: Inicia o TableController com o 'this' no index.js
+     * 
+     * @returns this
+     */
     init() {
         return this
     }

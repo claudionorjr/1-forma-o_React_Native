@@ -1,3 +1,11 @@
+/**
+ * class Table
+ * 
+ * Descrição: Classe modelo Table.model.js!
+ * 
+ * @version 1.0.0
+ * @author Claudionor Junior <claudionor.junior1994@gmail.com>
+ */
 export default class Table {
     constructor(id, textData, beginDate, finalDate) {
         this.id = id
@@ -7,9 +15,12 @@ export default class Table {
         this.btn = this.createBtn()
     }
 
-    /* 
-    * Descrição: Este método é usado para criar um botão de delete em cada linha individualmente
-    */
+    /**
+     * Descrição: Este método é usado para criar um botão de delete
+     *            em cada linha individualmente
+     * 
+     * @returns {HTMLButtonElement} btn
+     */
     createBtn() {
         const btn = document.createElement('button')
         btn.classList.add("btn")
@@ -24,9 +35,11 @@ export default class Table {
         return btn
     }
 
-    /* 
-    * Descrição: Inicia o TableController com o 'this' no index.js
-    */
+    /**
+     * Descrição: Inicia o TableController com o 'this' no index.js
+     * 
+     * @returns this
+     */
     init() {
         return this
     }
