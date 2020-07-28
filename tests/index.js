@@ -17,4 +17,8 @@ function testZeroInDisplay() {
     console.log("------------------")
 }
 
+function testForGetDisplayValue(){
+
+}
 testZeroInDisplay()
+testForGetDisplayValue()
