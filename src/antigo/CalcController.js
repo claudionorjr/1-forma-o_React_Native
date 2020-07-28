@@ -1,3 +1,11 @@
+/**
+ * class Table
+ * 
+ * Descrição: Classe para uma calculadora!
+ * 
+ * @version 1.0.0
+ * @author Claudionor Junior <claudionor.junior1994@gmail.com>
+ */
 export default class CalcController{
     constructor() {
         this._lastOperator = ''
@@ -9,28 +17,56 @@ export default class CalcController{
         this.initButtonsEvents()
     }
 
+    /**
+     * Descrição: Iniciar o display com "0"
+     */
     initialize() {
         this.setLastNumberToDisplay()
     }
 
+
+    /**
+     * Descrição: uma versão do addEventListener, porém é para vários
+     * @param {HTMLElement} element 
+     * @param {MouseEvent} events 
+     * @param {any} fn //Por Exemplo colocar style em um button: btn.style.cursor = "pointer"
+     */
     addEventListenerAll(element, events, fn) {
         events.split(' ').forEach(event => {
             element.addEventListener(event, fn, false)
         })
     }
 
+
+    /**
+     * Descrição: Pega no final do array this._operation um operador.
+     */
     getLastOperation() {
         return this._operation[this._operation.length - 1]
     }
 
+    /**
+     * Descrição: seta no final do array this._operation um operador.
+     * @param {String} value 
+     */
     setLastOperation(value) {
         this._operation[this._operation.length - 1] = value
     }
 
+    /**
+     * Descrição: Método é usado para verificar se é um operador lógico.
+     * @param {String} value 
+     */
     isOperator(value) {
         return (['+', '-', '*', '/'].indexOf(value) > -1)
     }
 
+    /**
+     * Descrição: Método usado para adicionar um value no this._operation e
+     * verificar se é maior que 3 se for vai para this.calc()
+     * 
+     * @param {Array} value 
+     */
     pushOperation(value) {
         this._operation.push(value)
         if (this._operation.length > 3) {
@@ -38,6 +74,9 @@ export default class CalcController{
         }
     }
 
+    /**
+     * Descrição: ele faz um join, tirando os espaços.
+     */
     getResult() {
         try {
             return eval(this._operation.join(""))
@@ -46,6 +85,10 @@ export default class CalcController{
         }
     }
 
+
+    /**
+     * Descrição: Método para calcular.
+     */
     calc() {
         let last = ''
         this._lastOperator = this.getLastItem()
@@ -68,6 +111,11 @@ export default class CalcController{
         this.setLastNumberToDisplay()
     }
 
+    /**
+     * Descrição Verifica se o ultimo item da array é operador ou numero.
+     * 
+     * @param {String} isOperator 
+     */
     getLastItem(isOperator = true) {
         let lastItem
         for (let i = this._operation.length - 1; i >= 0; i--) {
@@ -82,12 +130,26 @@ export default class CalcController{
         return lastItem
     }
 
+    /**
+     * Descrição: Setar o ultimo número no display, se for nulo será "0"
+     */
     setLastNumberToDisplay() {
         let lastNumber = this.getLastItem(false)
         if (!lastNumber) lastNumber = 0
         this.displayCalc = lastNumber
     }
 
+    /**
+     * Descrição: conforme a operação vinda do método this.execBtn(),
+     * vão ser feitas validações se essa operação é letra ou número.
+     * 
+     * Primeiro verifica se o this.getLastOperation(Array:this._operation) é um
+     * operador "'+' '-' '*' '/'" se for, vai ferificar qual operador é e vai setar no array this._operation,
+     * se não se esse operador por um "=" ele vai calcular.
+     * 
+     * Se não for operador vai acrrescentar um novo valor no this.getLastOperation() e setar no display
+     * @param {String} value 
+     */
     addOperation(value) {
         if (isNaN(this.getLastOperation())) {
             if (this.isOperator(value)) {
@@ -107,10 +169,19 @@ export default class CalcController{
         }
     }
 
+    /**
+     * Descrição: Setar Error no display
+     */
     setError() {
         this.displayCalc = "Error"
     }
 
+    /**
+     * Descrição: Conforme um dos elementos dentro do this.addEventListenerAll()
+     * for clicado vai executar um dos "cases"
+     * 
+     * @param {String} value 
+     */
     execBtn(value) {
         switch (value) {
             case '+':
@@ -145,6 +216,10 @@ export default class CalcController{
         }
     }
 
+    /**
+     * 
+     * Descrição: Iniciar os botões e acrescentar this.addEventListenerAll em todos
+     */
     initButtonsEvents() {
         let buttons = document.querySelectorAll("div.tecla")
         buttons.forEach((btn, index) => {
@@ -157,9 +232,21 @@ export default class CalcController{
             })
         })
     }
+
+    /**
+     * Descrição: Setar valor no value do display
+     * 
+     * @returns {HTMLElement} this._displayCalcEl.value
+     */
     get displayCalc() {
         return this._displayCalcEl.value
     }
+
+    /**
+     * Descrição: Setar valor no value do display
+     * 
+     * @param {Number} value
+     */
     set displayCalc(value) {
         if (value.toString().length > 10) {
             this.setError()
@@ -168,6 +255,11 @@ export default class CalcController{
         this._displayCalcEl.value = value
     }
 
+    /**
+     * Descrição: Inicia o CalcController com o 'this'
+     * 
+     * @returns this
+     */
     init(){
         return this
     }
