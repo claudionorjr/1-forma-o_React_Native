@@ -1,4 +1,4 @@
-import TableController from './controller/TableController.js'
+import TableViewController from './controller/TableViewController.js'
 
-const tableController = new TableController()
-tableController.init()
+const tableViewController = new TableViewController()
+tableViewController.init()

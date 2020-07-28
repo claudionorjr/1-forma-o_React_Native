@@ -17,7 +17,7 @@ export default class Table {
 
     /**
      * Descrição: Este método é usado para criar um botão de delete
-     *            em cada linha individualmente
+     * em cada linha individualmente
      * 
      * @returns {HTMLButtonElement} btn
      */
@@ -33,14 +33,5 @@ export default class Table {
             element.remove()
         })
         return btn
-    }
-
-    /**
-     * Descrição: Inicia o TableController com o 'this' no index.js
-     * 
-     * @returns this
-     */
-    init() {
-        return this
     }
 }
