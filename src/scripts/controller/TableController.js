@@ -10,7 +10,6 @@ import Table from './model/Table.js'
  */
 export default class TableController {
     constructor(task, beginDate, finalDate, indexRow, line) {
-        debugger;
         this.task = task
         this.beginDate = beginDate
         this.finalDate = finalDate
@@ -37,5 +36,14 @@ export default class TableController {
         colBeginDate.innerHTML = table.beginDate
         colFinalDate.innerHTML = table.finalDate
         colBtn.append(table.btn)
+    }
+
+    /**
+     * Descrição: Inicia o TableViewController com o 'this' no index.js
+     * 
+     * @returns this
+     */
+    init() {
+        return this
     }
 }

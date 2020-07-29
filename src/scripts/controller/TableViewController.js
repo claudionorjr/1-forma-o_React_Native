@@ -11,6 +11,9 @@ import validatorFields from './validators/fields.js'
  */
 export default class TableViewController {
     constructor() {
+        this.task
+        this.beginDate
+        this.finalDate
         this.buttonAdd()
     }
 
@@ -28,9 +31,9 @@ export default class TableViewController {
      * Descrição: Este método conta a linha e depois cria uma Row,
      * posteriomente é usada para setar as Células em this.addTask()
      * 
-     * @returns {Number} line
+     * @returns {HTMLTableRowElement} line
      */
-    countLinies() {
+    createNewRow() {
         const table = this.setTBody()
         const amountLines = table.rows.length
         const line = table.insertRow(amountLines);
@@ -42,7 +45,7 @@ export default class TableViewController {
      * 
      * @returns {Number} iRowCount
      */
-    rows() {
+    countTrForIndex() {
         const table = this.setTBody()
         const oRows = table.getElementsByTagName('tr')
         const iRowCount = oRows.length
@@ -56,33 +59,27 @@ export default class TableViewController {
         var buttonAdd = document.getElementById("btnAdd")
         buttonAdd.addEventListener('click', () => {
 
-            const linies = this.countLinies()
-            const indexRow = this.rows()
-            let task = document.getElementById('task').value
-            let beginDate = document.getElementById('beginDate').value
-            let finalDate = document.getElementById('finalDate').value
-            if (task == "") {
-                validatorFields(task, "Campo Tarefa não pode ser nulo!")
+            const linies = this.createNewRow()
+            const indexRow = this.countTrForIndex()
+            this.task = document.getElementById('task').value
+            this.beginDate = document.getElementById('beginDate').value
+            this.finalDate = document.getElementById('finalDate').value
+            if (this.task == "") {
+                validatorFields(this.task, "Campo Tarefa não pode ser nulo!")
                 return
             }
-            if (beginDate == "") {
-                validatorFields(beginDate, "Campo Data de Inicio não pode ser nulo!")
+            if (this.beginDate == "") {
+                validatorFields(this.beginDate, "Campo Data de Inicio não pode ser nulo!")
                 return
             }
-            if (finalDate == "") {
-                validatorFields(finalDate, "Campo Data de Entrega não pode ser nulo!")
+            if (this.finalDate == "") {
+                validatorFields(this.finalDate, "Campo Data de Entrega não pode ser nulo!")
                 return
             }
-            new TableController(task, beginDate, finalDate, indexRow, linies)
+            new TableController(this.task, this.beginDate, this.finalDate, indexRow, linies)
         })
     }
-
-    /**
-     * Descrição: Inicia o TableViewController com o 'this' no index.js
-     * 
-     * @returns this
-     */
-    init() {
+    init(){
         return this
     }
 }

@@ -14,6 +14,12 @@ export default class Table {
         this.finalDate = finalDate
         this.btn = this.createBtn()
     }
+    
+
+    removeLine(e){
+        const element = e.parentNode.parentNode
+        element.remove()
+    }
 
     /**
      * Descrição: Este método é usado para criar um botão de delete
@@ -28,9 +34,9 @@ export default class Table {
         btn.type = "button"
         btn.id = "btnRemove"
         btn.innerHTML = "<i class='fa fa-trash'></i> Tarefa"
-        btn.addEventListener('click', (e) => {
-            const element = (e.target.parentNode).parentNode
-            element.remove()
+        this.btn = btn
+        btn.addEventListener('click', () => {
+            this.removeLine(btn)
         })
         return btn
     }
