@@ -11,6 +11,7 @@ export default class CalcController{
         this._lastOperator = ''
         this._lastNumber = ''
         this._operation = []
+        this.btns
         this._locale = 'pt-BR'
         this._displayCalcEl = document.querySelector("#display")
         this.initialize()
@@ -220,7 +221,8 @@ export default class CalcController{
      * Descrição: Iniciar os botões e acrescentar this.addEventListenerAll em todos
      */
     initButtonsEvents() {
-        let buttons = document.querySelectorAll("div.tecla")
+        const buttons = document.querySelectorAll("div.tecla")
+        this.btns = buttons
         buttons.forEach((btn, index) => {
             this.addEventListenerAll(btn, 'click', e => {
                 let textBtn = btn.id.replace("btn-", "")
