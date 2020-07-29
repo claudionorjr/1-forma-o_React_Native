@@ -1,3 +1,26 @@
+var db
+
+var request = window.indexedDB.open("taskDB", 1)
+
+request.onerror = (event) => console.log("Erro ao abrir o banco de dados", event)
+
+request.onupgradeneeded = (event) => {
+    console.log("Atualizando...")
+    db = event.target.result
+    var objectStore = db.createObjectStore("taskDB", { keyPath : "id",  autoIncrement: true })
+    objectStore.createIndex("id", "id", { unique: false })
+    objectStore.createIndex("textData", "textData", { unique: false })
+    objectStore.createIndex("beginDate", "beginDate", { unique: false })
+    objectStore.createIndex("finalDate", "finalDate", { unique: false })
+    objectStore.createIndex("btn", "btn", { unique: false })
+}
+
+request.onsuccess  = (event) => {
+    console.log("Banco de dados aberto com sucesso.")
+    db = event.target.result
+}
+
+
 /**
  * class Table
  * 
@@ -34,7 +57,19 @@ export default class Table {
         btn.type = "button"
         btn.id = "btnRemove"
         btn.innerHTML = "<i class='fa fa-trash'></i> Tarefa"
-        this.btn = btn
+        try {
+            var transaction = db.transaction('taskDB', "readwrite")
+            var store = transaction.objectStore('taskDB')
+            var add = store.add({textData: this.textData, beginDate: this.beginDate, finalDate: this.finalDate, btn: this.btn})
+            add.onsuccess = function (event) {
+                console.log('Tarefa salva com sucesso.');
+            }
+        } catch (e) {
+            add.onerror = function (event) {
+                console.log(`Ocorreu um erro ao salvar o contato. Erro: ${event}`);
+            }
+        }
+        
         btn.addEventListener('click', () => {
             this.removeLine(btn)
         })
