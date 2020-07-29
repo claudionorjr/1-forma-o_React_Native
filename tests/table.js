@@ -54,7 +54,7 @@ function testIfCanDeleteRow() {
 
         console.log("Fn: testIfCanDeleteRow()")
         console.log(`Button in row index "${btn.parentNode.parentNode.firstElementChild.textContent}" deleted`)
-        model.removeLine(btn)
+        //model.removeLine(btn)
         console.log("Test Passed")
         console.log("------------------")
     } catch (e) {
