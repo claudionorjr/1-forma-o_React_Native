@@ -1,4 +1,4 @@
-import TableViewController from './controller/TableViewController.js'
+import TaskViewController from './controller/TaskViewController.js'
 
-const tableViewController = new TableViewController()
-tableViewController.init()
+const taskViewController = new TaskViewController()
+taskViewController.init()
