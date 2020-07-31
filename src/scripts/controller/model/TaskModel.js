@@ -1,5 +1,6 @@
 import Database from '../data/db.js'
 
+
 /**
  * class TaskModel
  * 
@@ -9,51 +10,60 @@ import Database from '../data/db.js'
  * @author Claudionor Junior <claudionor.junior1994@gmail.com>
  */
 export default class TaskModel {
+
     constructor(task, beginDate, finalDate) {
         this.textData = task
         this.beginDate = beginDate
         this.finalDate = finalDate
     }
 
+
+    /**
+     * Descrição: Método usado para criar uma nova tarefa no banco de dados
+     */
     create(){
         var database = new Database()
         database.open((db) => {
             var transaction = db.transaction('taskDB', "readwrite")
             var store = transaction.objectStore('taskDB')
             var add = store.add({textData: this.textData, beginDate: this.beginDate, finalDate: this.finalDate})
-            add.onsuccess = function (event) {
-                console.log('Tarefa salva com sucesso.')
-            }
-            add.onerror = function (event) {
-                console.log(`Ocorreu um erro ao salvar o contato. Erro: ${event}`)
-            }
+            add.onsuccess = () => {}
+            add.onerror = (event) => console.log(`Error To Save: ${event}`)
         })
     }
 
+
+    /**
+     * Descrição: Método consultar o banco e retornar uma lista de tarefas
+     * 
+     * @param {callback} callback
+     * @returns {callback} request.result
+     */
     getAll(callback) {
         var database = new Database()
         database.open((db) => {
             var transaction = db.transaction('taskDB', "readonly")
             var store = transaction.objectStore('taskDB')
             var request = store.getAll()
-            request.onsuccess = function(event) {
-                callback(request.result)
-            }
+            request.onsuccess = () => callback(request.result)
+            request.onerror = (event) => console.log(`Error in get All Tasks: ${event}`)
         })
     }
 
+
+    /**
+     * Descrição: Método recebe um "id" existente no banco de dados e o deleta
+     * 
+     * @param {Number} id 
+     */
     delete(id){
         var database = new Database()
         database.open((db) => {
             var transaction = db.transaction('taskDB', "readwrite")
             var store = transaction.objectStore('taskDB')
             var request = store.delete(id)
-            request.onsuccess = function (event) {
-                console.log('Tarefa excluída com sucesso.')
-            }
-            request.onerror = function (event) {
-                console.log('Ocorreu um erro ao excluir uma Tarefa.')
-            }
+            request.onsuccess = () => {}
+            request.onerror = (event) => console.log(`Error to delete Task: ${event}`)
         })
     }
 }

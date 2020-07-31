@@ -1,4 +1,4 @@
-import CalcController from "../src/scripts/controller/CalcController.js";
+import CalcController from "./CalcController.js";
 
 const calcController = new CalcController()
 calcController.init()

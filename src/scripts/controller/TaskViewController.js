@@ -1,15 +1,17 @@
 import TaskController from './TaskController.js'
 import validatorFields from './validators/fields.js'
 
+
 /**
- * class TaskViewController
+ * class TaskViewController.
  * 
- * Descrição: Classe para controlar informações da View!
+ * Descrição: Classe para controlar informações da View.
  * 
  * @version 1.0.0
  * @author Claudionor Junior <claudionor.junior1994@gmail.com>
  */
 export default class TaskViewController {
+
     constructor() {
         this.task
         this.beginDate
@@ -20,8 +22,9 @@ export default class TaskViewController {
         this.showAllTasks((list) => this.addAllTasks(list))
     }
 
+
     /**
-     * Descrição: Método usado para retornar um elemento HTML em outros métodos!
+     * Descrição: Método usado para retornar um elemento HTML em outros métodos.
      * 
      * @returns {HTMLElement} table
      */
@@ -30,37 +33,51 @@ export default class TaskViewController {
         return table
     }
 
+
+    /**
+     * Descrição: Método que recebe um callback para renderizar a lista
+     * de tarefas da TaskModel.
+     * 
+     * @param {callback} callback 
+     */
     showAllTasks(callback) {
         this.taskController.getAllTasks(callback)
     }
 
-    addAllTasks(list){
-        list.forEach(e => {
-            this.addTask(e['id'], e['textData'], e['beginDate'], e['finalDate'])
-        })
-    }
 
     /**
-     * Descrição: Remover uma linha da Tabela
+     * Descrição: Método recebe uma lista de tarefas e faz um forEach
+     * na lista e adiciona as tarefas indidualmente com suas informações.
      * 
-     * @param {HTMLButtonElement} e
+     * @param {Array} list 
      */
-    removeLine(btn, id){
+    addAllTasks(list){
+        list.forEach(e => this.addTask(e['id'], e['textData'], e['beginDate'], e['finalDate']))
+    }
+
+
+    /**
+     * Descrição: Remover uma linha da Tabela.
+     * 
+     * @param {HTMLButtonElement} btn
+     * @param {number} id
+     */
+    removeLine(btn, id) {
         const element = btn.parentNode.parentNode
-        if (btn.id == id){
-            console.log(`id que vai ser excluido ${id}`)
+
+        if (btn.id == id) {
             this.taskcontroller = new TaskController()
             this.taskcontroller.deleteTask(id)
             element.remove()
-            
+
         } else {
-            console.log(`Erro ao deletar o botão de id ${id}`)
+            console.log(`Error to delete button "id": ${id}`)
         }
-        
     }
 
+
     /**
-    * Descrição: Método que escuta e pega os dados dos inputs do formulário
+    * Descrição: Método que escuta e pega os dados dos inputs do formulário.
     */
     buttonAdd() {
         var buttonAdd = document.getElementById("btnAdd")
@@ -68,39 +85,46 @@ export default class TaskViewController {
             this.task = document.getElementById('task').value
             this.beginDate = document.getElementById('beginDate').value
             this.finalDate = document.getElementById('finalDate').value
+
             if (this.task == "") {
                 validatorFields(this.task, "Campo Tarefa não pode ser nulo!")
                 return
             }
+
             if (this.beginDate == "") {
                 validatorFields(this.beginDate, "Campo Data de Inicio não pode ser nulo!")
                 return
             }
+
             if (this.finalDate == "") {
                 validatorFields(this.finalDate, "Campo Data de Entrega não pode ser nulo!")
                 return
             }
+
             this.taskcontroller = new TaskController(this.task, this.beginDate, this.finalDate)
             this.taskcontroller.sendTaskToModel()
-            document.location.reload(true);
+
+            setTimeout(()=> document.location.reload(true), 300)
         })
     }
 
+
     /**
-     * Descrição: Este método cria uma Row
+     * Descrição: Método cria uma Row.
      * 
      * @returns {HTMLTableRowElement} line
      */
     createNewRow() {
         const table = this.setTBody()
         const amountLines = table.rows.length
-        const line = table.insertRow(amountLines);
+        const line = table.insertRow(amountLines)
         return line
     }
 
+
     /**
      * Descrição: Este método é usado para criar um botão de delete
-     * em cada linha individualmente
+     * em cada linha individualmente.
      * 
      * @returns {HTMLButtonElement} btn
      */
@@ -111,14 +135,13 @@ export default class TaskViewController {
         btn.type = "button"
         btn.id = `${id}`
         btn.innerHTML = "<i class='fa fa-trash'></i> Tarefa"
-        btn.addEventListener('click', () => {
-            this.removeLine(btn, id)
-        })
+        btn.addEventListener('click', () => this.removeLine(btn, id))
         return btn
     }
 
+
     /**
-     * Descrição: Método cria as celulas recebe dados do controller e adiciona um botão de deletar
+     * Descrição: Método cria as celulas recebe dados do controller e adiciona um botão de deletar.
      */
     addTask(id, task, beginDate, FinalDate) {
         this.newRow = this.createNewRow()
@@ -135,7 +158,11 @@ export default class TaskViewController {
         colBtn.append(this.createBtn(id))
     }
 
-    init(){
+
+    /**
+     * Método para iniciar todo o sistema de tarefas.
+     */
+    init() {
         return this
     }
 }

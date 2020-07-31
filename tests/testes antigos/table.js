@@ -1,6 +1,6 @@
-import TableViewController from '../src/scripts/controller/TableViewController.js'
-import TableController from '../src/scripts/controller/TableController.js'
-import Table from '../src/scripts/controller/model/Table.js'
+import TableViewController from '../../src/scripts/controller/TableViewController.js'
+import TableController from '../../src/scripts/controller/TableController.js'
+import Table from '../../src/scripts/controller/model/Table.js'
 
 const tableViewController = new TableViewController()
 tableViewController.init()
