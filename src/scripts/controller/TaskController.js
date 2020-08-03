@@ -32,7 +32,7 @@ export default class TaskController {
      * @param {callback} callback 
      */
     getAllTasks(callback) {
-       this.taskModel.getAll(callback)
+        this.taskModel.getAll(callback)
     }
 
 

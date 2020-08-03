@@ -144,18 +144,30 @@ export default class TaskViewController {
     /**
      * Descrição: Método cria as celulas recebe dados do controller e adiciona um botão de deletar.
      */
-    addTask(id, task, beginDate, FinalDate) {
+    addTask(id, task, beginDate, finalDate) {
         this.newRow = this.createNewRow()
         const colId = this.newRow.insertCell(0)
         const colTask = this.newRow.insertCell(1)
         const colBeginDate = this.newRow.insertCell(2)
         const colFinalDate = this.newRow.insertCell(3)
         const colBtn = this.newRow.insertCell(4)
-    
+
+        /**
+         * Descrição: Função para formatar data pt-BR
+         * 
+         * @param {String} date //Date String return dd/mm/YYYY
+         */
+        function toDate(date) {
+            var day  = date.split("-")[2]
+            var month  = date.split("-")[1]
+            var year  = date.split("-")[0]
+            return day + '/' + month + '/' + year
+        }
+
         colId.innerHTML = id
         colTask.innerHTML = task
-        colBeginDate.innerHTML = beginDate
-        colFinalDate.innerHTML = FinalDate
+        colBeginDate.innerHTML = toDate(beginDate)
+        colFinalDate.innerHTML = toDate(finalDate)
         colBtn.append(this.createBtn(id))
     }
 
