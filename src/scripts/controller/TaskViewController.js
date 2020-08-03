@@ -52,6 +52,8 @@ export default class TaskViewController {
      * @param {Array} list 
      */
     addAllTasks(list){
+        const table = this.setTBody()
+        table.innerHTML = ''
         list.forEach(e => this.addTask(e['id'], e['textData'], e['beginDate'], e['finalDate']))
     }
 
@@ -86,25 +88,24 @@ export default class TaskViewController {
             this.beginDate = document.getElementById('beginDate').value
             this.finalDate = document.getElementById('finalDate').value
 
-            if (this.task == "") {
-                validatorFields(this.task, "Campo Tarefa não pode ser nulo!")
+            if (this.task == '') {
+                validatorFields(this.task, 'Campo Tarefa não pode ser nulo!')
                 return
             }
 
-            if (this.beginDate == "") {
-                validatorFields(this.beginDate, "Campo Data de Inicio não pode ser nulo!")
+            if (this.beginDate == '') {
+                validatorFields(this.beginDate, 'Campo Data de Inicio não pode ser nulo!')
                 return
             }
 
-            if (this.finalDate == "") {
-                validatorFields(this.finalDate, "Campo Data de Entrega não pode ser nulo!")
+            if (this.finalDate == '') {
+                validatorFields(this.finalDate, 'Campo Data de Entrega não pode ser nulo!')
                 return
             }
 
             this.taskcontroller = new TaskController(this.task, this.beginDate, this.finalDate)
             this.taskcontroller.sendTaskToModel()
-
-            setTimeout(()=> document.location.reload(true), 300)
+            setTimeout(() => this.showAllTasks((list) => this.addAllTasks(list)), 300)
         })
     }
 

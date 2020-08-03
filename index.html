@@ -3,22 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="white"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/> 
+    <link rel="apple-touch-icon" href="src/images/hello-icon-152.png">
     <link rel="stylesheet" href="src/css/index.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">  
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    <meta name="apple-mobile-web-app-title" content="Gerência Tarefas">
+    <meta name="msapplication-TileImage" content="src/images/hello-icon-144.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Tabela</title>
 </head>
-
-
 <body>
     <header>
         <div class="nav">
             <ul class="topnav">
                 <li><a class="active" href=#><i class="fa fa-home"></i></a></li>
                 <li><a class="showCalc" href="#Tarefas">Tarefas</a></li>
-                <!--
-                <li><a class="showTask" href="#Tarefas">Calculadora</a></li>
-                -->
                 <li class="right"><a target="blank" href="https://github.com/claudionorjr">GitHub</a></li>
             </ul>
         </div>
@@ -50,8 +54,9 @@
             </table>
         </div>
     </main>
+    <script src="src/scripts/registerWorker.js"></script>
     <script type="module" src="src/scripts/index.js"></script>
-    <script type="module" src="tests/testDB.js"></script>
+    <!--<script type="module" src="tests/testDB.js"></script>-->
 </body>
 
 </html>
