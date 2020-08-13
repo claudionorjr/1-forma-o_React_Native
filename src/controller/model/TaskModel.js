@@ -1,40 +1,32 @@
-import Database from '../data/db.js'
+import Database from '../data/DB.js'
 
 
 /**
  * class TaskModel
  * 
- * Descrição: Classe modelo para cada Row!
+ * @description: Classe modelo para cada Row!
  * 
- * @version 1.0.0
+ * @version 2.0.0
  * @author Claudionor Junior <claudionor.junior1994@gmail.com>
  */
 export default class TaskModel {
 
-    constructor(task, beginDate, finalDate) {
-        this.textData = task
-        this.beginDate = beginDate
-        this.finalDate = finalDate
-    }
-
-
     /**
-     * Descrição: Método usado para criar uma nova tarefa no banco de dados
+     * @description: Método usado para criar uma nova tarefa no banco de dados
      */
-    create(){
+    create(task, beginDate, finalDate){
         var database = new Database()
         database.open((db) => {
             var transaction = db.transaction('taskDB', "readwrite")
             var store = transaction.objectStore('taskDB')
-            var add = store.add({textData: this.textData, beginDate: this.beginDate, finalDate: this.finalDate})
+            var add = store.add({task: task, beginDate: beginDate, finalDate: finalDate})
             add.onsuccess = () => {}
-            add.onerror = (event) => console.log(`Error To Save: ${event}`)
+            add.onerror = () => console.log(`Error To Create In DB.`)
         })
     }
 
-
     /**
-     * Descrição: Método consultar o banco e retornar uma lista de tarefas
+     * @description: Método consultar o banco e retornar uma lista de tarefas
      * 
      * @param {callback} callback
      * @returns {callback} request.result
@@ -46,13 +38,12 @@ export default class TaskModel {
             var store = transaction.objectStore('taskDB')
             var request = store.getAll()
             request.onsuccess = () => callback(request.result)
-            request.onerror = (event) => console.log(`Error in get All Tasks: ${event}`)
+            request.onerror = () => console.log(`Error in get All Tasks.`)
         })
     }
 
-
     /**
-     * Descrição: Método recebe um "id" existente no banco de dados e o deleta
+     * @description: Método recebe um "id" existente no banco de dados e o deleta
      * 
      * @param {Number} id 
      */
@@ -63,7 +54,7 @@ export default class TaskModel {
             var store = transaction.objectStore('taskDB')
             var request = store.delete(id)
             request.onsuccess = () => {}
-            request.onerror = (event) => console.log(`Error to delete Task: ${event}`)
+            request.onerror = () => console.log(`Error to delete Task.`)
         })
     }
 }
