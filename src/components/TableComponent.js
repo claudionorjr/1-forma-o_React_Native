@@ -79,16 +79,15 @@ export default class TableComponent extends React.Component {
                             <td><input id="beginDate" type="date" className="form-control" style={{minWidth:'193px'}}></input></td>
                             <td><input id="finalDate" type="date" className="form-control" style={{minWidth:'193px'}}></input></td>
                             <td>
-                                <button type="button" className="btn btn-success" style={{minWidth:'105px'}}
+                                <button type="button" className="btn btn-success" style={{minWidth:'106px'}}
                                     onClick={() => {
                                         let task = document.getElementById('task').value
                                         let beginDate = document.getElementById('beginDate').value
                                         let finalDate = document.getElementById('finalDate').value
                                         if(task !== '' && beginDate !== '' && finalDate !== '') {
                                             this.taskModel.create(task, beginDate, finalDate)
-                                        } else {
-                                            alert('Verifique se todos os campos estão preenchidos!')
                                         }
+                                        else alert('Verifique se todos os campos estão preenchidos!')
                                         this.refreshState()
                                     }}
                                     >Criar Tarefa
