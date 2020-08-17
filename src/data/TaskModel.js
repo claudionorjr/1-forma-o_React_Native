@@ -1,4 +1,4 @@
-import Database from '../data/DB.js'
+import Database from './DB.js'
 
 
 /**
@@ -15,14 +15,17 @@ export default class TaskModel {
      * @description: Método usado para criar uma nova tarefa no banco de dados
      */
     create(task, beginDate, finalDate){
-        var database = new Database()
+        return new Promise((resolve) => {var database = new Database()
         database.open((db) => {
             var transaction = db.transaction('taskDB', "readwrite")
             var store = transaction.objectStore('taskDB')
             var add = store.add({task: task, beginDate: beginDate, finalDate: finalDate})
-            add.onsuccess = () => {}
+            add.onsuccess = (event) => {
+                resolve(event.target.result)
+            }
             add.onerror = () => console.log(`Error To Create In DB.`)
         })
+    })
     }
 
     /**
@@ -31,15 +34,21 @@ export default class TaskModel {
      * @param {callback} callback
      * @returns {callback} request.result
      */
-    getAll(callback) {
-        var database = new Database()
-        database.open((db) => {
+    getAll() {
+        return new Promise((resolve) => {
+            var database = new Database()
+            database.open((db) => {
             var transaction = db.transaction('taskDB', "readonly")
             var store = transaction.objectStore('taskDB')
             var request = store.getAll()
-            request.onsuccess = () => callback(request.result)
+            request.onsuccess = () => {
+                resolve(request.result)
+            }
             request.onerror = () => console.log(`Error in get All Tasks.`)
         })
+
+        })
+        
     }
 
     /**

@@ -1,6 +1,8 @@
 import React from 'react'
-import TaskModel from '../controller/model/TaskModel.js'
+import { connect } from 'react-redux'
 import USDateToBRDate from '../validators/USDateToBRDate.js'
+import TaskModel from '../data/TaskModel.js'
+const taskModel = new TaskModel()
 
 
 /**
@@ -13,24 +15,12 @@ import USDateToBRDate from '../validators/USDateToBRDate.js'
  * @param {TaskModel} props
  * @returns {NavBar}
  */
-export default class TableComponent extends React.Component {
+class TableComponent extends React.Component {
     constructor(props) {
         super(props)
-        this.taskModel = new TaskModel()
-        this.state = {list: props.item}
+        this.list = props.list.length ? props.list : props.listaDefault
+        this.state = {list: this.list}
     }
-
-    /**
-     * @description: Método usado para atualizar o State.
-     */
-    refreshState() {
-        this.taskModel.getAll((newlist) => {
-            this.setState({
-                list: newlist
-            })
-        })
-    }
-
     /**
      * @description: Método usado para renderizar a tabela.
      */
@@ -48,8 +38,8 @@ export default class TableComponent extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            this.state.list.map((e , index)=>{
+                    {
+                            this.list.map((e , index)=>{
                                 var newBeginDate = new USDateToBRDate(e['beginDate'])
                                 var newFinalDate = new USDateToBRDate(e['finalDate'])
                                 return (
@@ -60,9 +50,11 @@ export default class TableComponent extends React.Component {
                                         <td>{newFinalDate.date}</td>
                                         <td>
                                             <button type="button" className="btn btn-danger"
-                                                onClick={()=>{
-                                                    this.taskModel.delete(e['id'])
-                                                    this.refreshState()
+                                                onClick={() => {
+                                                this.props.dispatch.bind(this, {
+                                                        type: 'DELETE',
+                                                        data: {}
+                                                    })
                                                 }}
                                                 >Excluir
                                             </button>
@@ -80,15 +72,19 @@ export default class TableComponent extends React.Component {
                             <td><input id="finalDate" type="date" className="form-control" style={{minWidth:'193px'}}></input></td>
                             <td>
                                 <button type="button" className="btn btn-success" style={{minWidth:'106px'}}
-                                    onClick={() => {
-                                        let task = document.getElementById('task').value
-                                        let beginDate = document.getElementById('beginDate').value
-                                        let finalDate = document.getElementById('finalDate').value
+                                    onClick={async () => {
+                                        const task = document.getElementById('task').value
+                                        const beginDate = document.getElementById('beginDate').value
+                                        const finalDate = document.getElementById('finalDate').value
                                         if(task !== '' && beginDate !== '' && finalDate !== '') {
-                                            this.taskModel.create(task, beginDate, finalDate)
+                                            const id = await taskModel.create(task, beginDate, finalDate)
+                                            this.props.dispatch.bind(this, {
+                                                type: 'CREATE',
+                                                data: {'id': id, 'task': task, 'beginDate': beginDate, 'finalDate': finalDate},
+                                                listData: this.list //Todo
+                                            })
                                         }
                                         else alert('Verifique se todos os campos estão preenchidos!')
-                                        this.refreshState()
                                     }}
                                     >Criar Tarefa
                                 </button>
@@ -100,3 +96,11 @@ export default class TableComponent extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        list: state.list,
+    }
+};
+
+export default connect(mapStateToProps)(TableComponent);
