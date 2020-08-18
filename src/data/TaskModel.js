@@ -16,16 +16,14 @@ export default class TaskModel {
      */
     create(task, beginDate, finalDate){
         return new Promise((resolve) => {var database = new Database()
-        database.open((db) => {
-            var transaction = db.transaction('taskDB', "readwrite")
-            var store = transaction.objectStore('taskDB')
-            var add = store.add({task: task, beginDate: beginDate, finalDate: finalDate})
-            add.onsuccess = (event) => {
-                resolve(event.target.result)
-            }
-            add.onerror = () => console.log(`Error To Create In DB.`)
+            database.open((db) => {
+                var transaction = db.transaction('taskDB', "readwrite")
+                var store = transaction.objectStore('taskDB')
+                var add = store.add({task: task, beginDate: beginDate, finalDate: finalDate})
+                add.onsuccess = (event) => resolve(event.target.result)
+                add.onerror = () => console.log(`Error To Create In DB.`)
+            })
         })
-    })
     }
 
     /**
@@ -37,15 +35,13 @@ export default class TaskModel {
     getAll() {
         return new Promise((resolve) => {
             var database = new Database()
-            database.open((db) => {
-            var transaction = db.transaction('taskDB', "readonly")
-            var store = transaction.objectStore('taskDB')
-            var request = store.getAll()
-            request.onsuccess = () => {
-                resolve(request.result)
-            }
-            request.onerror = () => console.log(`Error in get All Tasks.`)
-        })
+                database.open((db) => {
+                var transaction = db.transaction('taskDB', "readonly")
+                var store = transaction.objectStore('taskDB')
+                var request = store.getAll()
+                request.onsuccess = () => resolve(request.result)
+                request.onerror = () => console.log(`Error in get All Tasks.`)
+            })
 
         })
         
